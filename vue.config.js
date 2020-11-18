@@ -9,14 +9,14 @@
   }
 } */
 
-css: {
+/* css: {
   loaderOptions: {
     sass: {
       data: `
-        @import "@/scss/assets/_global.scss";
-        @import "@/scss/assets/_typo.scss";
-        @import "@/scss/assets/_variables.scss";
+        @import "@/assets/scss/_global.scss";
+        @import "@/assets/scss/_typo.scss";
+        @import "@/assets/scss/_variables.scss";
       `
     }
   }
-}
+} */
