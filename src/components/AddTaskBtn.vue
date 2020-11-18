@@ -2,7 +2,9 @@
   <div>
     <div class="addNewTask" @click="newTodo()">
       <div class="circle">
-        <font-awesome-icon :style="{ color: 'grey' }" size="2x" icon="plus" />
+        <span style="font-size: 1.6em; color: grey;">
+          <i class="fas fa-plus"></i>
+        </span>
       </div>
       <div class="titleAdd">
         <h1>Add a new Todo</h1>

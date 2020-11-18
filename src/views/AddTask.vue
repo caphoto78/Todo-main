@@ -44,32 +44,32 @@ export default {
   },
   methods: {
 
-   /*  addTask() {
+    addTask() {
       this.$router.push('/todos');
       this.$store.dispatch('addTask', this.task);
-    }, */
-
-    addTask() {
-      axios
-        .post(
-          'http://localhost:8000/posts',
-          {
-            id: this.id,
-            title: this.title,
-            due: this.due,
-            status: this.status
-          },
-          {
-            headers: { Authorization: `Bearer ${store.state.token}` }
-          }
-        )
-        .then(() => {
-            this.$router.push('/todos')
-        })
-        .catch(error => {
-            console.log(error)
-        })
     },
+
+    // addTask() {
+    //   axios
+    //     .post(
+    //       'http://localhost:8000/posts',
+    //       {
+    //         id: this.id,
+    //         title: this.title,
+    //         due: this.due,
+    //         status: this.status
+    //       },
+    //       {
+    //         headers: { Authorization: `Bearer ${store.state.token}` }
+    //       }
+    //     )
+    //     .then(() => {
+    //         this.$router.push('/todos')
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     })
+    // },
   },
 }
 </script>

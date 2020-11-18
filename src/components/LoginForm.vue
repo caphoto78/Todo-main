@@ -10,12 +10,12 @@
       <form class="form" @submit.prevent="submitForm">
         <div class="appControl">
           <AppControlInput 
-            v-model.trim="username" 
+            v-model="username" 
             type="text"
             >Username
           </AppControlInput>
           <AppControlInput 
-            v-model.trim="password" 
+            v-model="password" 
             type="password"
             >Password
           </AppControlInput>
@@ -68,46 +68,47 @@ export default {
     register() {
       this.$router.push('/signup');
     },
-
+    
     login() {
-      axios
-        .get(
-          'http://localhost:8000/user/login',
-          {
-            params: {
-              username: this.username,
-              password: this.password
-            }
-        }
-        )
-        .then(result => {
-          this.loginFailed = false
-          console.log(result.data)
-          store.commit('saveLoginData', {
-              name: result.data.name,
-              email: result.data.email,
-              token: result.data.token
-          })
-          this.$router.push('/todos')
-        })
-        .catch(error => {
-            console.log(error)
-            this.loginFailed = true
-        })
+      this.formIsValid = true;
+      if (
+        this.email === '' || 
+        !this.email.includes('@') || 
+        this.password.length < 6
+      ) {
+        this.formIsValid = false;
+        return;
       }
     },
 
-    // submitForm() {
-    //   this.formIsValid = true;
-    //   if (
-    //     this.email === '' || 
-    //     !this.email.includes('@') || 
-    //     this.password.length < 6
-    //   ) {
-    //     this.formIsValid = false;
-    //     return;
+
+    // login() {
+    //   axios
+    //     .get(
+    //       'http://localhost:8000/user/login',
+    //       {
+    //         params: {
+    //           username: this.username,
+    //           password: this.password
+    //         }
+    //     }
+    //     )
+    //     .then(result => {
+    //       this.loginFailed = false
+    //       console.log(result.data)
+    //       store.commit('saveLoginData', {
+    //           name: result.data.name,
+    //           email: result.data.email,
+    //           token: result.data.token
+    //       })
+    //       this.$router.push('/todos')
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //         this.loginFailed = true
+    //     })
     //   }
-    // }
+    },
   }
 
 </script>
