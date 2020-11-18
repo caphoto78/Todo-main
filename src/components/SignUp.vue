@@ -7,12 +7,46 @@
       </div>
       <form class="form">
         <div class="appControl">
-          <AppControlInput v-model="username" type="text">Username</AppControlInput>
-          <AppControlInput v-model="email" type="email">Email</AppControlInput>
-          <AppControlInput v-model="password" type="password">Password</AppControlInput>
-          <AppControlInput v-model="rpassword" type="password">Re-type Password</AppControlInput>
-          <AppControlInput v-model="website" type="url">Website</AppControlInput>
-          <AppControlInput v-model="phone" type="phone">Phone</AppControlInput>
+          <AppControlInput 
+              v-model="username"
+              type="text" 
+              required
+              >
+              Username
+          </AppControlInput>
+          <AppControlInput
+              v-model="email"
+              type="email" 
+              required
+              >
+              Email
+          </AppControlInput>
+          
+          <AppControlInput
+              v-model="password"
+              type="password"
+              required
+              >
+              Password
+          </AppControlInput>
+          <AppControlInput
+              v-model="rpassword"
+              type="password"
+              >
+              Re-type Password
+          </AppControlInput>
+          <AppControlInput 
+              v-model="website"
+              type="url"
+              >
+              Website
+          </AppControlInput>
+          <AppControlInput
+              v-model="phone"
+              type="phone"
+              >
+              Phone
+          </AppControlInput>
         </div>
         <div class="buttons">
           <LoginBtn
@@ -27,6 +61,7 @@
             title="Faceti click aici pentru conectare"
             >Create Account
           </LoginBtn>
+
         </div>
       </form>
     </div>
@@ -39,6 +74,10 @@ import AppControlInput from '@/components/UI/AppControlInput'
 import axios from 'axios'
 
 export default {
+  components: {
+    LoginBtn,
+    AppControlInput
+  },
   data() {
     return {
       username: '',
@@ -49,11 +88,14 @@ export default {
       phone: ''
     }
   },
-  components: {
-    LoginBtn,
-    AppControlInput
-  },
   methods: {
+    // validateEmail(value){
+    //   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+    //       this.msg['email'] = '';
+    //     } else{
+    //       this.msg['email'] = 'Invalid Email Address';
+    //     } 
+    // },
     back() {
       this.$router.push('/signin');
     },

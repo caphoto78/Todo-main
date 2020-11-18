@@ -2,7 +2,6 @@
   <div class="card">
     <div class="card-content">
       <!-- <img class="top-image" src="~/assets/top_image.jpg" alt="top-image"> -->
-
       <div class="card-header">
         <img class="logo" src="~@/assets/logo_oracle.gif" alt="logo">
         <h2 class="title"><slot /></h2>
@@ -204,6 +203,20 @@ input[type="checkbox"] {
   }
   h2 {
     margin: 0 0 10px 0 !important;
+  }
+  .logo {
+    margin-bottom: 70px;
+  }
+  .form {
+    margin: 50px 0;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+  }
+  .buttons .button {
+    display: block;
   }
 }
 

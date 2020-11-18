@@ -16,14 +16,14 @@ app.use(bearerToken())
 
 var redisClient = redis.createClient()
 
-// genereaza un token de login
+// generez un token de login
 function generateToken(username) {
     let data = {
         username: username
     }
     return jwt.sign(data, secret)
 }
-// verificam ca utilizatorul este logat
+// verific ca utilizatorul este logat
 // adica are un token valid
 function verifyLogin(req, res) {
     try {
@@ -109,6 +109,20 @@ app.get("/todos", (req, res) => {
         todos = JSON.parse(data)
         res.status(200)
             .send(todos)
+    })
+})
+
+app.delete("/todos/:id", (req, res) => {
+    if (!verifyLogin(req, res)) {
+        return
+    }
+    username = getUsernameFromToken(req)
+    todosKey = getTodosKey(username)
+    redisClient.del(todosKey, (err, data) => {
+        if (err) {
+            return reject(err);
+          }
+          return resolve(data);
     })
 })
 

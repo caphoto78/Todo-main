@@ -34,21 +34,18 @@ export default new Vuex.Store({
     //     if (localStorage.getItem('token')) {
     //         state.token = localStorage.getItem('token')
     //     }
-    // },  
+    // }, 
+
     ADD_TASK(state, task) {
       state.todos.push({
         id: task.id,
         title: task.title,
-        due: task.due,
-        completed: task.status
+        status: task.status,
+        due: task.due
       });
     },
   },
   actions: {
-    /* addTask({ commit }, task) {
-      commit("ADD_TASK", task);
-      task.title = "";
-    }, */
     addTask(context, task) {
       context.commit('ADD_TASK', task)
     }

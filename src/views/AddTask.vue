@@ -45,8 +45,8 @@ export default {
   methods: {
 
     addTask() {
-      this.$router.push('/todos');
       this.$store.dispatch('addTask', this.task);
+      this.$router.push('/todos');
     },
 
     // addTask() {
