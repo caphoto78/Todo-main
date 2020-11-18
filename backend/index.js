@@ -72,6 +72,7 @@ app.get("/user/login", (req, res) => {
             return
         }
         user = JSON.parse(data)
+        console.log('test')
         if (user.password !== sha1(password)) {
             res.sendStatus(400)
             console.log('Bad password')
