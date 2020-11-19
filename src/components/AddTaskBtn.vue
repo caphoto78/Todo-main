@@ -1,16 +1,15 @@
 <template>
-  <div>
     <div class="addNewTask" @click="newTodo()">
       <div class="circle">
-        <span style="font-size: 1.6em; color: grey;">
+         <span style="font-size: 1.3em; color: grey;">
           <i class="fas fa-plus"></i>
         </span>
       </div>
+     
       <div class="titleAdd">
         <h1>Add a new Todo</h1>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -24,28 +23,40 @@ export default {
 }
 </script>
 
-<style>
-  .circle {
-    width: 60px;
-    height: 56px;
-    border-radius: 50%;
-    border: 8px solid grey;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-  }
-
+<style lang="scss" scoped>
   .addNewTask {
-    width: 330px;
-    height: 70px;
+    padding: 10px;
     display: flex;
+    flex-wrap: nowrap;
     cursor: pointer;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #FCFBFA;
+    min-width: 260px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05), 
+              0 2px 2px rgba(0,0,0,0.05), 
+              0 4px 4px rgba(0,0,0,0.05), 
+              0 8px 8px rgba(0,0,0,0.05),
+              0 16px 16px rgba(0,0,0,0.05);
+  }
+  .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid grey;
+    position: relative;
+    display: block;
+    position: relative;
+    margin-right: 25px;
+  }
+  .circle span {
+    margin-left: 7px;
+    line-height: 32px;
   }
 
   .titleAdd {
-    margin-top: 5px;
-    font-size: size(30px);
+    font-size: 12px;
   }
 
 </style>

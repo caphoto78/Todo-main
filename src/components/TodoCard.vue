@@ -16,28 +16,20 @@
         </div>
       </div>
 
-      <div>
-        <div
-          v-for="(todo, index) in todos" :key="todo.id"
-          @dblclick="deleteTodo(index)"
-          @click="setData(index)"
-          class="taskList" >
-        
-          <div class="taskName">
-            <h3>{{ todo.title }}</h3>
-          </div>
+      <div class="tableContainer">
+        <table>
+          <tr
+            v-for="(todo, index) in todos" :key="todo.id"
+            @dblclick="deleteTodo(index)"
+            @click="setData(index)"
+            class="taskList">
 
-          <div class="taskStatus">
-            <h3>{{ todo.status }}</h3>
-          </div>
-
-          <div class="taskDue">
-            <h3>Due on: {{ todo.due }}</h3>
-          </div>
-
-        </div>
+            <td class="taskName">{{ todo.title }}</td>
+            <td class="taskStatus">{{ todo.status }}</td>
+            <td class="taskDue">Due on: {{ todo.due }}</td>
+          </tr>
+        </table>
       </div>
-      
     </div>
   </div> 
 </template>
@@ -119,39 +111,67 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .card {
-  position: relative;
-  z-index: 1;
-}
+<style lang="scss" scoped>
+
+// Mobil
+
+.card {
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    height: 100vh;
+  }
 
 .card-content {
-  animation: fadeIn 1.2s 0 1 cubic-bezier(0, 0, 0.2, 1);
-  width: 80%;
-  padding: 30px;
-  margin: 6rem auto;
-  background: #FCFBFA;
-  border-radius: 8px;
-  min-width: 600px;
-  &:before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-image: url('~@/assets/top_image.jpg') !important;
-    background-position: 58% 20% !important;
-    background-repeat: no-repeat !important;
-    background-size: cover;
-    background-attachment: fixed !important;
-    height: 100% !important;
-  }
+  margin: 110px 0 0 0;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+// Task List
+
+.tableContainer {
+  min-height: 300px;
+  max-height: 650px;
+  overflow-y:scroll;
+  scrollbar-base-color:gold;
+  border-radius: 8px;
+}
+
+table {
+  order: 1;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+tr:nth-child(even) {
+    background-color: #FCFBFA;
+}
+
+tr {
+  border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+td {
+    padding: 1em;
+    font-size: .9em;
+    opacity: .8;
+    min-width: 90px;
+}
+
+// Buttons for task filter
+
 .tabs {
-  margin-top: 50px;
+  order: 2;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3px;
+  grid-gap: 5px;
   height: 40px;
 }
 
@@ -163,56 +183,109 @@ export default {
   color: #FCFBFA;
   border-radius: 8px;
   padding: 5px;
-  min-width: 177px;
+  min-width: 90px;
 }
 
 .tabs h3 {
-  font-size: 16px;
+  font-size: 12px;
+  font-family: Oracle-Bold;
+  text-align: center;
 }
 
-@keyframes fadeIn {
-  0% {
-    transform: translateY(2.5em);
-    opacity: 0;
+
+
+
+
+
+/* Tablet menu */
+@media all and (min-width: 700px) {
+  .card {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+    height: 100vh;
   }
-  35% {
-    transform: translateY(2.5em);
-    opacity: 0;
+
+  .tableContainer {
+    background-color: #FCFBFA;
+    min-height: 500px;
+    max-height: 850px;
   }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
+
+}
+
+
+/* Desktop menu */
+@media all and (min-width: 960px) {
+  .card {
+    position: relative;
+    z-index: 1;
+    padding: 30px;
+  }
+
+
+  // Task List
+
+  .tableContainer {
+    min-height: 450px;
+    overflow-y:scroll;
+    scrollbar-base-color:gold;
+    border-radius: 8px;
+    background-color: #FCFBFA;
+  }
+
+  table {
+    order: 2;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  tr:nth-child(odd) {
+      background-color: white;
+  }
+  tr:nth-child(even) {
+      background-color: #FCFBFA;
+  }
+
+  tr {
+    border-bottom: 1px solid rgb(209, 209, 209);
+  }
+
+  td {
+      padding: 1em;
+      font-size: .9em;
+      opacity: .8;
+      min-width: 90px;
+  }
+
+  // Buttons for task filter
+
+  .tabs {
+    order: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    height: 40px;
+  }
+
+  .myTodos, .incompleteTodos, .completedTodos {
+    background-color: #588757;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FCFBFA;
+    border-radius: 8px;
+    padding: 5px;
+    min-width: 90px;
+  }
+
+  .tabs h3 {
+    font-size: 12px;
+    font-family: Oracle-Bold;
+    text-align: center;
   }
 }
 
-  .taskList {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 3px;
-  height: 40px;
-  cursor: pointer;
-}
 
-.taskName {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid silver;
-}
-
-.taskStatus {
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid silver;
-}
-
-.taskDue {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid silver;
-}
 </style>
