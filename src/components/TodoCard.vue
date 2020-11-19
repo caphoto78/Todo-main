@@ -193,11 +193,6 @@ td {
   text-align: center;
 }
 
-
-
-
-
-
 /* Tablet menu */
 @media all and (min-width: 700px) {
   .card {
@@ -229,7 +224,7 @@ td {
   }
 
   table {
-    order: 2;
+    order: 1;
   }
 
   td {
@@ -239,7 +234,7 @@ td {
   // Buttons for task filter
 
   .tabs {
-    order: 1;
+    order: 0;
   }
 
   .tabs h3 {
