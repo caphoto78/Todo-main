@@ -10,7 +10,7 @@
           >
         <a tabindex="0"><i class="fas fa-caret-down"></i></a>
         <ul class="submenu">
-          <li class="subitem"><a href="#">Logout</a></li>
+          <li class="subitem"><router-link to="/signin">Logout</router-link></li>
         </ul>
       </li>
       <li @click="toggleMenu" v-if="!isActive" class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
