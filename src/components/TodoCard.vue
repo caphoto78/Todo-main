@@ -10,14 +10,18 @@
         <div class="incompleteTodos">
           <h3>My Incompleted Todos</h3>
         </div>
-        <div class="completedTodos">
+        <div class="completedTodos"
+        >
           <h3>My Completed Todos</h3>
         </div>
       </div>
 
       <div>
-        <div v-for="todo in todos" :key="todo.id" 
-        class="taskList">
+        <div
+          v-for="(todo, index) in todos" :key="todo.id"
+          @dblclick="deleteTodo(index)"
+          @click="setData(index)"
+          class="taskList" >
         
           <div class="taskName">
             <h3>{{ todo.title }}</h3>
@@ -30,6 +34,7 @@
           <div class="taskDue">
             <h3>Due on: {{ todo.due }}</h3>
           </div>
+
         </div>
       </div>
       
@@ -55,11 +60,37 @@ export default {
 
   data() {
     return {
-      isDone: true
+      isDone: false
       // todos: []
     }
   },
   methods: {
+
+    setData(index) {
+      if(this.todos[index].status === "pending") {
+          this.todos[index].status = "completed"
+        } else if (this.todos[index].status === "completed") {
+          this.todos[index].status = "pending"
+        }
+    },
+
+   /*  switchStatus() {
+      this.isDone = !this.isDone
+    },
+
+    setStatus(index) {
+      if(this.isDone = false) {
+        this.todos[index].status = "pending"
+      } else if (this.isDone = true) {
+        this.todos[index].status = "completed"
+      }
+      
+    }, */
+    
+    deleteTodo(index) {
+      this.todos.splice(index, 1);
+    }
+
     
     // del(id) {
     //   axios.delete(
@@ -97,7 +128,6 @@ export default {
 .card-content {
   animation: fadeIn 1.2s 0 1 cubic-bezier(0, 0, 0.2, 1);
   width: 80%;
-  height: 60vh;
   padding: 30px;
   margin: 6rem auto;
   background: #FCFBFA;
@@ -161,6 +191,7 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 3px;
   height: 40px;
+  cursor: pointer;
 }
 
 .taskName {

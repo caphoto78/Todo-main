@@ -29,10 +29,11 @@
       <input
         list="statuses"
         name="status"
-        id="status"
         class="form-input"
         @focus="isActive = true"
-        @blur="handleBlur">
+        @blur="handleBlur"
+        @input="$emit('input', $event.target.value)">
+        
       <datalist id="statuses">
         <option value="pending" selected>Not Finished</option>
         <option value="completed">Finished</option>
@@ -76,9 +77,8 @@ export default {
     position: relative;
     border-bottom: 2px solid #CBC5BF;
     padding: 2.4rem 0 rem 0;
-    height: 3.1rem;
+    height: 3rem;
     margin: 0 10px 1rem 10px;
-    flex: 40%
   }
 
   .form-label {
@@ -118,7 +118,7 @@ export default {
     font-weight: 500;
     background: none;
     color: #3F3A36;
-    width: 80%;
+    width: 96%;
     border: none;
     height: 1.8em;
     position: absolute;

@@ -36,9 +36,9 @@ export default {
     return {
       task: {
         id: uuidv4(),
-        title: "",
-        due: "",
-        status: ""
+        title: '',
+        due: '',
+        status: '',
       }
     }
   },
@@ -75,11 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-div {
-  z-index: 1;
-  position: relative;
-}
 
 .card {
   position: relative;
