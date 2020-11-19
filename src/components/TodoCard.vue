@@ -138,6 +138,7 @@ export default {
   overflow-y:scroll;
   scrollbar-base-color:gold;
   border-radius: 8px;
+  background-color: #FCFBFA;
 }
 
 table {
@@ -218,72 +219,32 @@ td {
 /* Desktop menu */
 @media all and (min-width: 960px) {
   .card {
-    position: relative;
-    z-index: 1;
-    padding: 30px;
+    padding: 50px;
   }
-
 
   // Task List
 
   .tableContainer {
-    min-height: 450px;
-    overflow-y:scroll;
-    scrollbar-base-color:gold;
-    border-radius: 8px;
+    min-height: 400px;
     background-color: #FCFBFA;
   }
 
   table {
     order: 2;
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  tr:nth-child(odd) {
-      background-color: white;
-  }
-  tr:nth-child(even) {
-      background-color: #FCFBFA;
-  }
-
-  tr {
-    border-bottom: 1px solid rgb(209, 209, 209);
   }
 
   td {
-      padding: 1em;
-      font-size: .9em;
-      opacity: .8;
-      min-width: 90px;
+      font-size: 1em;
   }
 
   // Buttons for task filter
 
   .tabs {
     order: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 5px;
-    height: 40px;
-  }
-
-  .myTodos, .incompleteTodos, .completedTodos {
-    background-color: #588757;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FCFBFA;
-    border-radius: 8px;
-    padding: 5px;
-    min-width: 90px;
   }
 
   .tabs h3 {
-    font-size: 12px;
-    font-family: Oracle-Bold;
-    text-align: center;
+    font-size: 16px;
   }
 }
 
