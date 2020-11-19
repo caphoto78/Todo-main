@@ -139,6 +139,7 @@ export default {
   scrollbar-base-color:gold;
   border-radius: 8px;
   background-color: #FCFBFA;
+  margin: 10px 0;
 }
 
 table {

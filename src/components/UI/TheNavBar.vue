@@ -45,7 +45,6 @@ export default {
 <style lang="scss" scoped>
 nav {
     z-index: 1000;
-    overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
