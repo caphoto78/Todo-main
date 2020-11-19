@@ -201,8 +201,6 @@ td {
 /* Tablet menu */
 @media all and (min-width: 700px) {
   .card {
-    position: relative;
-    z-index: 1;
     padding: 30px;
     height: 100vh;
   }
@@ -210,7 +208,7 @@ td {
   .tableContainer {
     background-color: #FCFBFA;
     min-height: 500px;
-    max-height: 850px;
+    max-height: 650px;
   }
 
 }
@@ -225,8 +223,9 @@ td {
   // Task List
 
   .tableContainer {
-    min-height: 400px;
     background-color: #FCFBFA;
+    min-height: 500px;
+    max-height: 650px;
   }
 
   table {
