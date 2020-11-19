@@ -186,6 +186,10 @@ td {
   border-radius: 8px;
   padding: 5px;
   min-width: 90px;
+  cursor: pointer;
+  &:hover, &:active {
+    background-color: #6A9D67;
+  }
 }
 
 .tabs h3 {

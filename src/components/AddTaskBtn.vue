@@ -49,6 +49,9 @@ export default {
     display: block;
     position: relative;
     margin-right: 25px;
+    &:hover {
+      border-color: #6A9D67
+    }
   }
   .circle span {
     margin-left: 7px;
