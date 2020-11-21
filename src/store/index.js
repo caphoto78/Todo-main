@@ -42,17 +42,29 @@ export default new Vuex.Store({
         title: task.title,
         status: task.status,
         due: task.due
-      });
+      })
     },
+    DELETE_TASK(state, task) {
+      const index = state.todos.findIndex(todo => todo.id === task);
+      state.todos.splice(index, 1);
+    }
   },
   actions: {
     addTask(context, task) {
       context.commit('ADD_TASK', task)
+    },
+    deleteTask(context, task) {
+      context.commit('DELETE_TASK', task)
     }
   },
   getters: {
     getTodoList: (state) => state.todos,
-    
+    getTodosCompleted: (state) => {
+      return state.todos.filter(todo => todo.status === "completed");
+    },
+    getTodosPending: (state) => {
+      return state.todos.filter(todo => todo.status === "pending");
+    },
   },
   modules: {}
 });

@@ -26,7 +26,7 @@
             <td class="taskName">{{ todo.title }}</td>
             <td class="taskStatus">{{ todo.status }}</td>
             <td class="taskDue">Due on: {{ todo.due }}</td>
-            <td @click.stop="deleteTodo(index)" class="taskDelete">
+            <td @click.stop="deleteTodo(index)"         class="taskDelete">
               <i class="fas fa-trash"></i>
             </td>
           </tr>
@@ -48,6 +48,12 @@ export default {
   computed: {
     todos() {
       return this.$store.getters.getTodoList;
+    },
+    todosCompleted() {
+      return this.$store.getters.getTodosCompleted;
+    },
+    todosPending() {
+      return this.$store.getters.getTodosPending;
     },
   },
 
@@ -79,9 +85,11 @@ export default {
       
     }, */
 
-    deleteTodo(index) {
-      this.todos.splice(index, 1);
+    deleteTodo(task) {
+      this.$store.dispatch('deleteTask', this.task)
     },
+
+    
 
     // del(id) {
     //   axios.delete(
