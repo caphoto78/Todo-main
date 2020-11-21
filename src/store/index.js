@@ -47,6 +47,14 @@ export default new Vuex.Store({
     DELETE_TASK(state, task) {
       const index = state.todos.findIndex(todo => todo.id === task);
       state.todos.splice(index, 1);
+    },
+    TOGGLE_STATUS(state, task) {
+      const item = state.todos.find(todo => todo.id === task);
+      if (item.status === "pending") {
+        item.status = "completed";
+      } else if (item.status === "completed") {
+        item.status = "pending";
+      }
     }
   },
   actions: {
@@ -55,6 +63,9 @@ export default new Vuex.Store({
     },
     deleteTask(context, task) {
       context.commit('DELETE_TASK', task)
+    },
+    toggleStatus(context, task) {
+      context.commit('TOGGLE_STATUS', task)
     }
   },
   getters: {

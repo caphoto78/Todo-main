@@ -20,7 +20,7 @@
           <tr
             v-for="(todo, index) in todos"
             :key="todo.id"
-            @click="setData(index)"
+            @click="toggleStatus(todo.id)"
             class="taskList"
           >
             <td class="taskName">{{ todo.title }}</td>
@@ -59,36 +59,18 @@ export default {
 
   data() {
     return {
-      isDone: false,
       // todos: []
     };
   },
   methods: {
-    setData(index) {
-      if (this.todos[index].status === "pending") {
-        this.todos[index].status = "completed";
-      } else if (this.todos[index].status === "completed") {
-        this.todos[index].status = "pending";
-      }
-    },
-
-    /*  switchStatus() {
-      this.isDone = !this.isDone
-    },
-
-    setStatus(index) {
-      if(this.isDone = false) {
-        this.todos[index].status = "pending"
-      } else if (this.isDone = true) {
-        this.todos[index].status = "completed"
-      }
-      
-    }, */
-
+    
     deleteTodo(task) {
       this.$store.dispatch('deleteTask', this.task)
     },
 
+    toggleStatus(id) {
+      this.$store.dispatch('toggleStatus', id)
+    },
     
 
     // del(id) {
@@ -163,6 +145,7 @@ tr:nth-child(even) {
 
 tr {
   border-bottom: 1px solid rgb(209, 209, 209);
+  cursor: pointer;
 }
 
 td {
