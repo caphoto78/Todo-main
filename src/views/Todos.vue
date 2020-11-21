@@ -6,20 +6,19 @@
         <add-task-btn></add-task-btn>
 
         <div class="tabs">
-          <div @click="showAll" class="myTodos">
+          <div :class="{active: all}" @click="showAll" class="myTodos">
             <h3>My Todos</h3>
           </div>
-          <div @click="showCurrent" class="incompleteTodos">
+          <div :class="{active: current}" @click="showCurrent" class="incompleteTodos">
             <h3>My Incompleted Todos</h3>
           </div>
-          <div @click="showCompleted" class="completedTodos">
+          <div :class="{active: completed}" @click="showCompleted" class="completedTodos">
             <h3>My Completed Todos</h3>
           </div>
         </div>
         <todos-all v-if="all"></todos-all>
         <completed-todos v-if="completed"></completed-todos>
         <current-todos v-if="current"></current-todos>
-        
       </div>
     </div>
   </div>
@@ -46,7 +45,7 @@ export default {
     return {
       all: true,
       current: false,
-      completed: false
+      completed: false,
     }
   },
   methods: {
@@ -132,11 +131,14 @@ export default {
   padding: 5px;
   min-width: 90px;
   cursor: pointer;
-  &:hover,
-  &:active {
+  &:hover {
     background-color: #6a9d67;
   }
 }
+
+.active {
+    background-color: #6a9d67;
+  }
 
 .tabs h3 {
   font-size: 12px;
