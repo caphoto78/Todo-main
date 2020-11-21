@@ -7,7 +7,8 @@
         <div class="myTodos">
           <h3>My Todos</h3>
         </div>
-        <div class="incompleteTodos">
+        <div 
+         class="incompleteTodos">
           <h3>My Incompleted Todos</h3>
         </div>
         <div class="completedTodos"
@@ -20,13 +21,13 @@
         <table>
           <tr
             v-for="(todo, index) in todos" :key="todo.id"
-            @dblclick="deleteTodo(index)"
             @click="setData(index)"
             class="taskList">
 
             <td class="taskName">{{ todo.title }}</td>
             <td class="taskStatus">{{ todo.status }}</td>
             <td class="taskDue">Due on: {{ todo.due }}</td>
+            <td @click.stop="deleteTodo(index)" class="taskDelete"><i class="fas fa-trash"></i></td>
           </tr>
         </table>
       </div>
@@ -47,7 +48,7 @@ export default {
   computed: {
     todos() {
       return this.$store.getters.getTodoList
-    }
+    },
   },
 
   data() {
@@ -167,6 +168,14 @@ td {
     min-width: 90px;
 }
 
+.taskDelete {
+  width: 20px;
+  text-align: center;
+  &:hover {
+    color: #875757;
+  }
+}
+
 // Buttons for task filter
 
 .tabs {
@@ -240,6 +249,7 @@ td {
 
   .tabs {
     order: 0;
+    margin-top: 10px;
   }
 
   .tabs h3 {

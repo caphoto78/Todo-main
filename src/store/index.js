@@ -51,7 +51,8 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    getTodoList: (state) => state.todos
+    getTodoList: (state) => state.todos,
+    
   },
   modules: {}
 });
