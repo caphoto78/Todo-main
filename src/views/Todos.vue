@@ -26,11 +26,11 @@
 
 <script>
 import axios from "axios";
-import AddTaskBtn from "@/components/UI/AddTaskBtn";
-import TheNavBar from "../components/UI/TheNavBar.vue";
-import TodosAll from "../components/TodosAll.vue"
-import CompletedTodos from "../components/CompletedTodos.vue"
-import CurrentTodos from "../components/CurrentTodos.vue"
+import AddTaskBtn from "@/components/TodoApp/UI/AddTaskBtn";
+import TheNavBar from "../components/TodoApp/UI/TheNavBar.vue";
+import TodosAll from "../components/TodoApp/TodosAll.vue"
+import CompletedTodos from "../components/TodoApp/CompletedTodos.vue"
+import CurrentTodos from "../components/TodoApp/CurrentTodos.vue"
 
 export default {
   components: {

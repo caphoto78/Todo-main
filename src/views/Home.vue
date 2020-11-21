@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import TheNavBar from '../components/UI/TheNavBar.vue'
+import TheNavBar from '../components/TodoApp/UI/TheNavBar.vue'
 
 export default {
   name: "Home",

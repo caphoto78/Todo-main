@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import AppControlInput from '../components/UI/AppControlInput.vue'
-import LoginBtn from '../components/UI/LoginBtn.vue'
-import TheNavBar from '../components/UI/TheNavBar.vue'
+import AppControlInput from '../components/TodoApp/UI/AppControlInput.vue'
+import LoginBtn from '../components/TodoApp/UI/LoginBtn.vue'
+import TheNavBar from '../components/TodoApp/UI/TheNavBar.vue'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
