@@ -7,12 +7,10 @@
         <div class="myTodos">
           <h3>My Todos</h3>
         </div>
-        <div 
-         class="incompleteTodos">
+        <div class="incompleteTodos">
           <h3>My Incompleted Todos</h3>
         </div>
-        <div class="completedTodos"
-        >
+        <div class="completedTodos">
           <h3>My Completed Todos</h3>
         </div>
       </div>
@@ -20,54 +18,55 @@
       <div class="tableContainer">
         <table>
           <tr
-            v-for="(todo, index) in todos" :key="todo.id"
+            v-for="(todo, index) in todos"
+            :key="todo.id"
             @click="setData(index)"
-            class="taskList">
-
+            class="taskList"
+          >
             <td class="taskName">{{ todo.title }}</td>
             <td class="taskStatus">{{ todo.status }}</td>
             <td class="taskDue">Due on: {{ todo.due }}</td>
-            <td @click.stop="deleteTodo(index)" class="taskDelete"><i class="fas fa-trash"></i></td>
+            <td @click.stop="deleteTodo(index)" class="taskDelete">
+              <i class="fas fa-trash"></i>
+            </td>
           </tr>
         </table>
       </div>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-import AddTaskBtn from '@/components/AddTaskBtn'
+import axios from "axios";
+import AddTaskBtn from "@/components/AddTaskBtn";
 
 export default {
-  
   components: {
     AddTaskBtn,
   },
 
   computed: {
     todos() {
-      return this.$store.getters.getTodoList
+      return this.$store.getters.getTodoList;
     },
   },
 
   data() {
     return {
-      isDone: false
+      isDone: false,
       // todos: []
-    }
+    };
   },
   methods: {
-
     setData(index) {
-      if(this.todos[index].status === "pending") {
-          this.todos[index].status = "completed"
-        } else if (this.todos[index].status === "completed") {
-          this.todos[index].status = "pending"
-        }
+      if (this.todos[index].status === "pending") {
+        this.todos[index].status = "completed";
+      } else if (this.todos[index].status === "completed") {
+        this.todos[index].status = "pending";
+      }
     },
 
-   /*  switchStatus() {
+    /*  switchStatus() {
       this.isDone = !this.isDone
     },
 
@@ -79,12 +78,11 @@ export default {
       }
       
     }, */
-    
+
     deleteTodo(index) {
       this.todos.splice(index, 1);
-    }
+    },
 
-    
     // del(id) {
     //   axios.delete(
     //     `http://localhost:8000/todos/${id}`,
@@ -107,21 +105,19 @@ export default {
     // mounted() {
     //   this.getTodoList()
     // }
-},
-  
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 // Mobil
 
 .card {
-    position: relative;
-    z-index: 1;
-    padding: 15px;
-    height: 100vh;
-  }
+  position: relative;
+  z-index: 1;
+  padding: 15px;
+  height: 100vh;
+}
 
 .card-content {
   margin: 110px 0 0 0;
@@ -136,10 +132,10 @@ export default {
 .tableContainer {
   min-height: 300px;
   max-height: 650px;
-  overflow-y:scroll;
-  scrollbar-base-color:gold;
+  overflow-y: scroll;
+  scrollbar-base-color: gold;
   border-radius: 8px;
-  background-color: #FCFBFA;
+  background-color: #fcfbfa;
   margin: 10px 0;
 }
 
@@ -151,10 +147,10 @@ table {
 }
 
 tr:nth-child(odd) {
-    background-color: white;
+  background-color: white;
 }
 tr:nth-child(even) {
-    background-color: #FCFBFA;
+  background-color: #fcfbfa;
 }
 
 tr {
@@ -162,15 +158,19 @@ tr {
 }
 
 td {
-    padding: 1em;
-    font-size: .9em;
-    opacity: .8;
-    min-width: 90px;
+  padding: 1em;
+  font-size: 0.9em;
+  opacity: 0.8;
+  min-width: 90px;
+  text-align: center;
+}
+
+.taskName {
+  text-align: left;
 }
 
 .taskDelete {
   width: 20px;
-  text-align: center;
   &:hover {
     color: #875757;
   }
@@ -186,18 +186,21 @@ td {
   height: 40px;
 }
 
-.myTodos, .incompleteTodos, .completedTodos {
+.myTodos,
+.incompleteTodos,
+.completedTodos {
   background-color: #588757;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #FCFBFA;
+  color: #fcfbfa;
   border-radius: 8px;
   padding: 5px;
   min-width: 90px;
   cursor: pointer;
-  &:hover, &:active {
-    background-color: #6A9D67;
+  &:hover,
+  &:active {
+    background-color: #6a9d67;
   }
 }
 
@@ -215,13 +218,11 @@ td {
   }
 
   .tableContainer {
-    background-color: #FCFBFA;
+    background-color: #fcfbfa;
     min-height: 500px;
     max-height: 650px;
   }
-
 }
-
 
 /* Desktop menu */
 @media all and (min-width: 960px) {
@@ -232,7 +233,7 @@ td {
   // Task List
 
   .tableContainer {
-    background-color: #FCFBFA;
+    background-color: #fcfbfa;
     min-height: 500px;
     max-height: 650px;
   }
@@ -242,7 +243,7 @@ td {
   }
 
   td {
-      font-size: 1em;
+    font-size: 1em;
   }
 
   // Buttons for task filter
@@ -256,6 +257,4 @@ td {
     font-size: 16px;
   }
 }
-
-
 </style>
