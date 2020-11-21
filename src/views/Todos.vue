@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import AddTaskBtn from "@/components/AddTaskBtn";
+import AddTaskBtn from "@/components/UI/AddTaskBtn";
 import TheNavBar from "../components/UI/TheNavBar.vue";
 import TodosAll from "../components/TodosAll.vue"
 import CompletedTodos from "../components/CompletedTodos.vue"

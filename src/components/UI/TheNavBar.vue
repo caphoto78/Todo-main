@@ -89,9 +89,6 @@ a {
   .nav-menu li.subitem a {
     padding: 15px;
   }
-  .logo {
-
-  }
   .toggle {
       text-align: right;
       font-size: 20px;
