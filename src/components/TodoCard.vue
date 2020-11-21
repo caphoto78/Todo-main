@@ -59,7 +59,6 @@ export default {
 
   data() {
     return {
-      // todos: []
     };
   },
   methods: {
@@ -67,7 +66,6 @@ export default {
     deleteTodo(task) {
       this.$store.dispatch('deleteTask', this.task)
     },
-
     toggleStatus(id) {
       this.$store.dispatch('toggleStatus', id)
     },
@@ -145,7 +143,9 @@ tr:nth-child(even) {
 
 tr {
   border-bottom: 1px solid rgb(209, 209, 209);
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 td {
