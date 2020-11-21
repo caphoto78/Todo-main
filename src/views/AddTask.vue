@@ -5,13 +5,14 @@
 
     <div class="card">
       <div class="card-content">
-
-        <h1>Add a New Todo</h1>
-        <app-control-input v-model="task.title" type="text">My Todo</app-control-input>
-        <app-control-input v-model="task.due" type="date"></app-control-input>
-        <app-control-input v-model="task.status" controlType="list">Status</app-control-input>
-      
-        <login-btn class="login-btn" @click="addTask">Add Todo</login-btn>
+          <form @submit.prevent="addTask">
+            <h1>Add a New Todo</h1>
+            <app-control-input v-model="task.title" type="text">My Todo</app-control-input>
+            <app-control-input v-model="task.due" type="date"></app-control-input>
+            <app-control-input v-model="task.status" controlType="list">Status</app-control-input>
+            <login-btn class="login-btn" type="submit">Add Todo</login-btn>
+        </form>
+        
 
     </div>
   </div>
