@@ -7,7 +7,7 @@
         @click="toggleStatus(todo.id)"
         class="taskList"
       >
-        <td class="taskName">{{ todo.title }}</td>
+        <td class="taskName" @dblclick.stop="editTask(todo.id)">{{ todo.title }}</td>
         <td class="taskStatus">{{ todo.status }}</td>
         <td class="taskDue">Due on: {{ todo.due }}</td>
         <td @click.stop="deleteTodo(index)" class="taskDelete">
@@ -36,6 +36,9 @@ export default {
     toggleStatus(id) {
       this.$store.dispatch("toggleStatus", id);
     },
+    editTask(task) {
+      this.$store.dispatch("editTask", task);
+    }
 
     // del(id) {
     //   axios.delete(
