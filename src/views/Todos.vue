@@ -64,29 +64,6 @@ export default {
       this.current = false
       this.completed = true
     }
-
-    // del(id) {
-    //   axios.delete(
-    //     `http://localhost:8000/todos/${id}`,
-    //     {
-    //       headers: { Authorization: `Bearer ${this.$store.state.token}` }
-    //     }
-    //   ).then(() => this.getTodoList())
-    //   .catch(err => console.log(err))
-    // },
-    // getTodoList() {
-    //   axios.get(
-    //     'http://localhost:8000/todos',
-    //   {
-    //     headers: { Authorization: `Bearer ${this.$store.state.token}` }
-    //   }
-    //   )
-    //   .then(response => { this.todos = response.data; console.log(response.data) })
-    //   .catch(err => console.log(err))
-    // },
-    // mounted() {
-    //   this.getTodoList()
-    // }
   },
 }
 </script>
