@@ -11,6 +11,7 @@ import TheNavBar from '../components/TodoApp/UI/TheNavBar.vue'
 export default {
   name: "Home",
   components: {
+    TheNavBar
   }
 };
 </script>

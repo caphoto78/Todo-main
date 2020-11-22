@@ -5,7 +5,7 @@
         <img class="logo" src="~@/assets/logo_oracle.gif" alt="" />
         <h2 class="title"><slot /></h2>
       </div>
-      <form class="form">
+      <form class="form" @submit.prevent="signUp">
         <div class="appControl">
           <AppControlInput v-model="username" type="text" required>
             Username
