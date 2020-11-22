@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import LoginBtn from '@/components/UI/LoginBtn'
-import AppControlInput from '@/components/UI/AppControlInput'
+import LoginBtn from '@/components/TodoApp/UI/LoginBtn'
+import AppControlInput from '@/components/TodoApp/UI/AppControlInput'
 
 export default {
   components: {

@@ -2,66 +2,44 @@
   <div class="card">
     <div class="card-content">
       <div class="card-header">
-        <img class="logo" src="~@/assets/logo_oracle.gif" alt="">
+        <img class="logo" src="~@/assets/logo_oracle.gif" alt="" />
         <h2 class="title"><slot /></h2>
       </div>
       <form class="form">
         <div class="appControl">
-          <AppControlInput 
-              v-model="username"
-              type="text" 
-              required
-              >
-              Username
+          <AppControlInput v-model="username" type="text" required>
+            Username
           </AppControlInput>
-          <AppControlInput
-              v-model="email"
-              type="email" 
-              required
-              >
-              Email
+          <AppControlInput v-model="email" type="email" required>
+            Email
           </AppControlInput>
-          
-          <AppControlInput
-              v-model="password"
-              type="password"
-              required
-              >
-              Password
+
+          <AppControlInput v-model="password" type="password" required>
+            Password
           </AppControlInput>
-          <AppControlInput
-              v-model="rpassword"
-              type="password"
-              >
-              Re-type Password
+          <AppControlInput v-model="rpassword" type="password">
+            Re-type Password
           </AppControlInput>
-          <AppControlInput 
-              v-model="website"
-              type="url"
-              >
-              Website
+          <AppControlInput v-model="website" type="url">
+            Website
           </AppControlInput>
-          <AppControlInput
-              v-model="phone"
-              type="phone"
-              >
-              Phone
+          <AppControlInput v-model="phone" type="phone">
+            Phone
           </AppControlInput>
         </div>
         <div class="buttons">
           <LoginBtn
-            type = "button"
+            type="button"
             title="Faceti click aici pentru crearea unui cont nou"
             @click="back"
             >Back
           </LoginBtn>
           <LoginBtn
-            type = "submit"
+            type="submit"
             @click="signup"
             title="Faceti click aici pentru conectare"
             >Create Account
           </LoginBtn>
-
         </div>
       </form>
     </div>
@@ -69,24 +47,24 @@
 </template>
 
 <script>
-import LoginBtn from '@/components/UI/LoginBtn'
-import AppControlInput from '@/components/UI/AppControlInput'
-import axios from 'axios'
+import LoginBtn from "@/components/TodoApp/UI/LoginBtn";
+import AppControlInput from "@/components/TodoApp/UI/AppControlInput";
+import axios from "axios";
 
 export default {
   components: {
     LoginBtn,
-    AppControlInput
+    AppControlInput,
   },
   data() {
     return {
-      username: '',
-      email: '',
-      password: '',
-      rpassword: '',
-      website: '',
-      phone: ''
-    }
+      username: "",
+      email: "",
+      password: "",
+      rpassword: "",
+      website: "",
+      phone: "",
+    };
   },
   methods: {
     // validateEmail(value){
@@ -94,29 +72,26 @@ export default {
     //       this.msg['email'] = '';
     //     } else{
     //       this.msg['email'] = 'Invalid Email Address';
-    //     } 
+    //     }
     // },
     back() {
-      this.$router.push('/signin');
+      this.$router.push("/signin");
     },
     signup() {
-      console.log('Signed up')
+      console.log("Signed up");
       axios
-        .post(
-            'http://localhost:8000/user',
-            {
-                username: this.username,
-                email: this.email,
-                password: this.password,
-                website: this.website,
-                phone: this.phone
-            }
-        )
-        .then(this.$router.push('/signin'))
-        .catch(error => console.log(error));
-    }
+        .post("http://localhost:8000/user", {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          website: this.website,
+          phone: this.phone,
+        })
+        .then(this.$router.push("/signin"))
+        .catch((error) => console.log(error));
+    },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -130,7 +105,7 @@ export default {
   width: 650px;
   padding: 30px;
   margin: 6rem auto;
-  background: #FCFBFA;
+  background: #fcfbfa;
   border-radius: 8px;
 }
 
@@ -176,11 +151,11 @@ input[type="checkbox"] {
 
 .remember {
   display: block;
-  margin: 24px 0
+  margin: 24px 0;
 }
 
 @media (max-width: 500px), (max-height: 620px) {
-  .card-content{
+  .card-content {
     width: 100%;
     height: 100vh;
     min-width: 400px;
@@ -195,5 +170,4 @@ input[type="checkbox"] {
     margin-bottom: 30px;
   }
 }
-
 </style>
