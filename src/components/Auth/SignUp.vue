@@ -78,7 +78,6 @@ export default {
       this.$router.push("/signin");
     },
     signup() {
-      console.log("Signed up");
       axios
         .post("http://localhost:8000/user", {
           username: this.username,

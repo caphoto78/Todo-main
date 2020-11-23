@@ -1,50 +1,56 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    name: null,
+    username: null,
     email: null,
     token: null,
     newTask: '',
-    todos: [
-
-    ]
+    todos: []
   },
   mutations: {
     saveLoginData: (state, loginData) => {
-      state.name = loginData.name
-      state.token = loginData.token
+      state.username = loginData.username
       state.email = loginData.email
-      localStorage.setItem('name', state.name)
+      state.token = loginData.token
+      localStorage.setItem('username', state.username)
       localStorage.setItem('token', state.token)
     },
     clearLoginData: (state) => {
-        state.name = null
-        state.token = null
-        state.email = null
-        localStorage.removeItem('name')
-        localStorage.removeItem('token')
+      state.username = null
+      state.token = null
+      state.email = null
+      localStorage.removeItem('username')
+      localStorage.removeItem('token')
     },
     initializeStore: (state) => {
-        if (localStorage.getItem('name')) {
-            state.name = localStorage.getItem('name')
-        }
-        if (localStorage.getItem('token')) {
-            state.token = localStorage.getItem('token')
-        }
-    }, 
-    
+      if (localStorage.getItem('username')) {
+        state.username = localStorage.getItem('username')
+      }
+      if (localStorage.getItem('token')) {
+        state.token = localStorage.getItem('token')
+      }
+    },
+
     ADD_TASK(state, task) {
+      console.log(task);
       state.todos.push({
         id: task.id,
         title: task.title,
         status: task.status,
         due: task.due
       })
+      
     },
+
+    GET_TASKS(state, tasks) {
+      state.todos = tasks
+    },
+
     DELETE_TASK(state, task) {
       const index = state.todos.findIndex(todo => todo.id === task);
       state.todos.splice(index, 1);
@@ -58,25 +64,94 @@ export default new Vuex.Store({
         item.status = "pending";
       }
     },
-    GET_TASK(state, task) {
+ /*    GET_TASK(state, task) {
       state.newTask = task
     },
     CLEAR_TASK(state) {
       state.newTask = ''
-    }
+    } */
   },
   actions: {
-    addTask(context, task) {
-      context.commit('ADD_TASK', task)
+
+    async getTasks({ commit }) {
+      const response = await axios
+        .get(
+          'http://localhost:8000/todos',
+          {
+            headers: { Authorization: `Bearer ${this.state.token}` }
+          }
+        )
+        .then((response) =>  {
+          commit('GET_TASKS', response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
-    deleteTask(context, task) {
-      context.commit('DELETE_TASK', task)
+
+    async addTask({ commit }, task) {
+      const response = await axios
+        .post(
+          'http://localhost:8000/todos',
+          {
+            id: task.id,
+            title: task.title,
+            status: task.status,
+            due: task.due
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.state.token}`
+            }
+          }
+        )
+        .then((response) => {
+          commit('ADD_TASK', JSON.parse(response.config.data))
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
-    toggleStatus(context, task) {
-      context.commit('TOGGLE_STATUS', task)
-    }
+
+    async deleteTask({ commit }, task) {
+      const response = await axios
+        .delete(
+          `http://localhost:8000/todos/${task.id}`,
+          task,
+          {
+            headers: {
+              Authorization: `Bearer ${this.state.token}`
+            }
+          }
+        )
+        .then(() => {
+          commit('DELETE_TASK', task)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    async toggleStatus({ commit }, task) {
+      const response = await axios
+        .put(
+          'http://localhost:8000/todos',
+          task,
+          {
+            headers: {
+              Authorization: `Bearer ${this.state.token}`
+            }
+          }
+        )
+        .then((task) => {
+          commit('TOGGLE_STATUS', task)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
   },
   getters: {
+
     getTodoList: (state) => state.todos,
     getTodosCompleted: (state) => {
       return state.todos.filter(todo => todo.status === "completed");

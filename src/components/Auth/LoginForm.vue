@@ -6,7 +6,7 @@
         <img class="logo" src="~@/assets/logo_oracle.gif" alt="logo">
         <h2 class="title"><slot /></h2>
       </div>
-      <form class="form" @submit.prevent="submitForm">
+      <form class="form" @submit.prevent="login">
         <div class="appControl">
           <AppControlInput 
             v-model="username" 
@@ -38,7 +38,6 @@
           <LoginBtn
             type = "submit"
             title="Faceti click aici pentru conectare"
-            @click='login'
             >Login
           </LoginBtn>
         </div>
@@ -50,6 +49,7 @@
 <script>
 import LoginBtn from '@/components/TodoApp/UI/LoginBtn'
 import AppControlInput from '@/components/TodoApp/UI/AppControlInput'
+import axios from 'axios'
 
 export default {
   components: {
@@ -59,7 +59,8 @@ export default {
   data() {
     return {
       username: '',
-      password: '',
+      password:'',
+      loginFailed: false,
       formIsValid: true,
     }
   },
@@ -68,7 +69,7 @@ export default {
       this.$router.push('/signup');
     },
     
-    login() {
+/*     login() {
       this.formIsValid = true;
       if (
         this.email === '' || 
@@ -78,35 +79,35 @@ export default {
         this.formIsValid = false;
         return;
       }
-    },
+    }, */
 
 
-    // login() {
-    //   axios
-    //     .get(
-    //       'http://localhost:8000/user/login',
-    //       {
-    //         params: {
-    //           username: this.username,
-    //           password: this.password
-    //         }
-    //     }
-    //     )
-    //     .then(result => {
-    //       this.loginFailed = false
-    //       console.log(result.data)
-    //       store.commit('saveLoginData', {
-    //           name: result.data.name,
-    //           email: result.data.email,
-    //           token: result.data.token
-    //       })
-    //       this.$router.push('/todos')
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //         this.loginFailed = true
-    //     })
-    //   }
+    login() {
+      axios
+        .get(
+          'http://localhost:8000/user/login',
+          {
+            params: {
+              username: this.username,
+              password: this.password
+            }
+        }
+        )
+        .then(result => {
+          this.loginFailed = false
+          console.log(result.data)
+          this.$store.commit('saveLoginData', {
+              username: result.data.username,
+              email: result.data.email,
+              token: result.data.token
+          })
+          this.$router.push('/todos')
+        })
+        .catch(error => {
+            console.log(error)
+            this.loginFailed = true
+        })
+      }
     },
   }
 

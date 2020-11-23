@@ -86,7 +86,7 @@ app.get("/user/login", (req, res) => {
     })
 })
 
-app.put("/todos", (req, res) => {
+app.post("/todos", (req, res) => {
     if (!verifyLogin(req, res)) {
         return
     }
