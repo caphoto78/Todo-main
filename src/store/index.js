@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
 
     DELETE_TASK(state, task) {
-      const index = state.todos.findIndex(todo => todo.id === task);
+      const index = state.todos.findIndex(todo => todo.id === task.id);
       state.todos.splice(index, 1);
     },
 
@@ -82,6 +82,7 @@ export default new Vuex.Store({
           }
         )
         .then((response) =>  {
+          console.log(response.data);
           commit('GET_TASKS', response.data);
         })
         .catch(error => {
@@ -125,6 +126,7 @@ export default new Vuex.Store({
           }
         )
         .then(() => {
+          console.log("TASK: " + task);
           commit('DELETE_TASK', task)
         })
         .catch(error => {

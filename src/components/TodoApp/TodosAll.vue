@@ -2,7 +2,7 @@
   <div class="tableContainer">
     <table>
       <tr
-        v-for="(todo, index) in todos"
+        v-for="(todo) in todos"
         :key="todo.id"
         @click="toggleStatus(todo.id)"
         class="taskList"
@@ -10,7 +10,7 @@
         <td class="taskName" @dblclick.stop="editTask(todo.id)">{{ todo.title }}</td>
         <td class="taskStatus">{{ todo.status }}</td>
         <td class="taskDue">Due on: {{ todo.due }}</td>
-        <td @click.stop="deleteTodo(index)" class="taskDelete">
+        <td @click.stop="deleteTodo(todo)" class="taskDelete">
           <i class="fas fa-trash"></i>
         </td>
       </tr>
@@ -33,8 +33,9 @@ export default {
     };
   },
   methods: {
-    deleteTodo(task) {
-      this.$store.dispatch("deleteTask", this.task);
+    deleteTodo(todo) {
+      console.log(todo);
+      this.$store.dispatch("deleteTask", todo);
     },
     toggleStatus(id) {
       this.$store.dispatch("toggleStatus", id);
@@ -42,12 +43,12 @@ export default {
 /*     editTask(task) {
       this.$store.dispatch("editTask", task);
     }, */
-    getTasks() {
+    getTasks(tasks) {
       this.$store.dispatch("getTasks");
     }
   },
-  created() {
-      this.getTasks()
+  mounted() {
+      // this.getTasks()
   }
 }
 </script>

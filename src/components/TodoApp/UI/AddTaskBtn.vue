@@ -1,22 +1,5 @@
 <template>
-    <div class="addNewTask" @click="newTodo()">
-      <div class="circle">
-         <span style="font-size: 1.3em; color: grey;">
-          <i class="fas fa-plus"></i>
-        </span>
-      </div>
-     
-      <div class="titleAdd">
-        <h1>Add a new Todo</h1>
-      </div>
-    </div>
-</template>
-
-<script>
-export default {
-  name: "addTaskBtn",
-  methods: {
-    newTodo() {
+    <di                                           
       this.$router.push('/todos/add');
     },
   },
@@ -35,10 +18,10 @@ export default {
     background-color: #FCFBFA;
     min-width: 260px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.05), 
-              0 2px 2px rgba(0,0,0,0.05), 
-              0 4px 4px rgba(0,0,0,0.05), 
-              0 8px 8px rgba(0,0,0,0.05),
-              0 16px 16px rgba(0,0,0,0.05);
+                0 2px 2px rgba(0,0,0,0.05), 
+                0 4px 4px rgba(0,0,0,0.05), 
+                0 8px 8px rgba(0,0,0,0.05),
+                0 16px 16px rgba(0,0,0,0.05);
   }
   .circle {
     width: 40px;
